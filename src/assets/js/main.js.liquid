@@ -1,0 +1,177 @@
+/* 
+
+    This JavaScript file handles various elements on the home page including:
+
+    - Close the top bar
+    - Open and close the mega drop down menu
+    - Open and close the mobile menu
+    - Display the Quick View button on mouseover of product thumbnails
+    - Quick View: 
+        - API call to get product data
+        - update HTML elements with data from API
+        - API call to add item to shopping cart
+        - handle close of quick view window
+
+*/
+
+function closeTop (){
+    document.getElementById('top-bar').style.display = 'none';
+}
+
+function dropDownOver (){
+    document.getElementById('mega-drop-down').style.display = 'inline-block';
+    document.getElementById('overlay-main').style.display = 'block';
+}
+
+function dropDownOut (){
+    document.getElementById('mega-drop-down').style.display = 'none';
+    document.getElementById('overlay-main').style.display = 'none';
+}
+
+function mobileMenuOpen (){
+    document.getElementById('mobile-drop-down').style.display = 'block';
+
+    document.getElementById('page-container').style.minHeight = '100vh';
+    document.getElementById('content-wrap').style.paddingBottom = '170px';
+    document.getElementById('mobile-blue-footer').style.display = 'block';
+
+    document.getElementById("mobile-button").src = "{{ 'x_mobile.svg' | asset_url }}";
+    document.getElementById('mobile-button').style.marginTop = '25px';
+    document.getElementById('mobile-button').style.marginRight = '5px';
+    document.getElementById('mobile-cart').style.display = 'none';
+    document.getElementById('mobile-turn-off').style.display = 'none';
+    document.getElementById("mobile-button").onclick = mobileMenuClose;
+}
+
+function mobileMenuClose (){
+    document.getElementById('mobile-drop-down').style.display = 'none';
+
+    document.getElementById('page-container').style.minHeight = '';
+    document.getElementById('content-wrap').style.paddingBottom = '0px';
+    document.getElementById('mobile-blue-footer').style.display = 'none';
+
+    document.getElementById("mobile-button").src = "{{ 'menu.svg' | asset_url }}";
+    document.getElementById('mobile-button').style.marginTop = '20px';
+    document.getElementById('mobile-button').style.marginRight = '0px';
+    document.getElementById('mobile-cart').style.display = 'inline-block';
+    document.getElementById("mobile-button").onclick = mobileMenuOpen;
+    document.getElementById('mobile-turn-off').style.display = 'block';
+}
+
+function quickViewButton (id){
+    document.getElementById(id).style.visibility = 'visible';
+}
+
+function quickViewButtonOut (id){
+    document.getElementById(id).style.visibility = 'hidden';
+}
+
+function quickView (id, buttonid){
+    
+    // Create a request variable and assign a new XMLHttpRequest object to it.
+     try {
+               // Opera 8.0+, Firefox, Safari 
+               request = new XMLHttpRequest();
+            } catch (e) {
+
+               // Internet Explorer Browsers
+               try {
+                  request = new ActiveXObject("Msxml2.XMLHTTP");
+               } catch (e) {
+                  
+                  try {
+                     request = new ActiveXObject("Microsoft.XMLHTTP");
+                  } catch (e) {
+
+                     // Something went wrong
+                     alert("Your browser broke!");
+                     return false;
+                  }
+            }
+        }
+
+    // Open a new connection, using the GET request on the URL endpoint
+    try {
+        request.open('GET', 'https://lee-dev-store-3.myshopify.com/admin/products.json?ids=' + id, true, '252e76fcc478e6dacfe2e34027bea49b', '2958f24293e72daa8bd005aeb9683a63');
+    } catch (e) {
+        //alert('open fail');
+    }
+
+    request.onload = function() {
+        // Begin accessing JSON data here
+        var data = JSON.parse(this.response)
+
+        var id = data.products[0].id;
+        var vendor = data.products[0].vendor;
+        var title = data.products[0].title;
+        var bodyhtml = data.products[0].body_html;
+        var image = data.products[0].image.src;
+        var sku = data.products[0].variants[0].sku;
+        var variant_id = data.products[0].variants[0].id;
+        var price = data.products[0].variants[0].price;
+
+        document.getElementById("quick-view-image").src = image;
+        document.getElementById("quick-view-vendor").innerHTML = vendor;
+        document.getElementById("quick-view-title").innerHTML = title;
+        document.getElementById("quick-view-sku").innerHTML = sku;
+        document.getElementById("quick-view-price").innerHTML = "$" + price;
+        document.getElementById("quick-view-bodyhtml").innerHTML = bodyhtml;
+        document.getElementById("variant_id").value = variant_id;
+
+        document.getElementById("quick-view-container").style.display = "block";
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    // Send request
+    request.send();
+
+    document.getElementById(buttonid).style.visibility = 'hidden';
+
+}
+
+function quantityPlus (){
+    var amount = document.getElementById('quantity-box-2').innerHTML;
+    amount = Number(amount);
+    amount = amount + 1;
+    document.getElementById('quantity-box-2').innerHTML = amount;
+}
+
+function quantityMinus (){
+    var amount = document.getElementById('quantity-box-2').innerHTML;
+    amount = Number(amount);
+    amount = amount - 1;
+    if (amount < 1){ amount = 1; }
+    document.getElementById('quantity-box-2').innerHTML = amount;
+}
+
+function addToCart (){
+
+    var variant_id = document.getElementById("variant_id").value;
+    var amount = document.getElementById("quantity-box-2").innerHTML;
+    amount = Number(amount);
+    variant_id = Number(variant_id);
+
+    jQuery.post('/cart/add.js', {
+    quantity: amount,
+    id: variant_id
+    })
+    
+    .done(function() {
+        document.getElementById("cart-success").style.display = "block";
+    })
+    .fail(function() {
+    alert( "error" );
+    });
+
+}
+
+//Handle close of quick view
+
+window.onclick = function(event) {
+  if (event.target == document.getElementById("myModal")) {
+    document.getElementById("quick-view-container").style.display = "none";
+    document.getElementById("myModal").style.display = "none";
+    document.getElementById("cart-success").style.display = "none";
+    document.getElementById("quantity-box-2").innerHTML = 1;
+  }
+}
