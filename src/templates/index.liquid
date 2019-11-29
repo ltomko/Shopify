@@ -1,0 +1,105 @@
+<div class="mobile-turn-off" id="mobile-turn-off">
+
+<div class="overlay-main" id="overlay-main"></div>
+    <div class="image-main">
+
+        <div class="hero-text-box">
+
+            <span class="hero-text">
+                Hero Headline<br>
+                Dolor Sit Amet
+            </span>
+
+            <div class="hero-text-2">
+                Description curabitur lobortis id lorem id bibendum. Ut id consectetur magna. Quisque volutpat augue enim, pulvinar lobortis nibh lacinia at vestibulum nec
+            </div>
+
+            <div class="button-1">Shop Now</div>
+
+        </div>
+    </div>
+
+
+<div class="spacer-2"></div>
+
+<h2>Featured Products</h2>
+
+
+<div class="product-slider" id="product-slider">
+
+    <div class="product-slider-arrow">
+        {{ 'left_arrow_product.svg' | asset_url | img_tag: 'Left Arrow', 'left-arrow-product' }}
+    </div>
+
+    <div class="product-card" onMouseOver="quickViewButton('product1')" onMouseOut="quickViewButtonOut('product1')">
+        <div class="product-image-container" style="background-image:url({{ 'product_image_2.svg' | asset_url }})">
+            <div id="product1" onClick="quickView(4372486520883, 'product1')">Quick View</div>
+        </div>
+        <br>
+        This is a long product name with over two lines.<br><br>
+        from $69.99
+    </div>
+
+    <div class="product-card" onMouseOver="quickViewButton('product2')" onMouseOut="quickViewButtonOut('product2')">
+                    <div class="product-image-container" style="background-image:url({{ 'product_image_1.svg' | asset_url }})">
+            <div id="product2" onClick="quickView(4373298708531, 'product2')">Quick View</div>
+        </div>
+            <br>
+            This is a long product name with over two lines.<br><br>
+            from $69.99
+    </div>
+
+    <div class="product-card" onMouseOver="quickViewButton('product3')" onMouseOut="quickViewButtonOut('product3')">
+                    <div class="product-image-container" style="background-image:url({{ 'product_image_3.svg' | asset_url }})">
+                    <img src="{{ 'sale.svg' | asset_url }}" class="sale-icon ie10up">
+            <div id="product3" onClick="quickView(4373300346931, 'product3')">Quick View</div>
+        </div>
+            <br>
+            This is a long product name with over two lines.<br><br>
+            $49.99&nbsp;&nbsp;&nbsp;<strike style="color:#565E68;">$69.99</strike>
+    </div>
+
+    <div class="product-card" onMouseOver="quickViewButton('product4')" onMouseOut="quickViewButtonOut('product4')">
+                <div class="product-image-container" style="background-image:url({{ 'product_image_4.svg' | asset_url }})">
+            <div id="product4" onClick="quickView(4373302214707, 'product4')">Quick View</div>
+        </div>
+        <br>
+        This is a long product name with over two lines.<br><br>
+        $69.99
+    </div>
+
+    <div class="product-slider-arrow">
+        {{ 'right_arrow_product.svg' | asset_url | img_tag: 'Left Arrow', 'right-arrow-product' }}
+    </div>
+
+</div>
+
+<div id="myModal" class="modal">
+<div class="quick-view-container" id="quick-view-container">
+    <div class="quick-view-row">
+    <div class="quick-view-column"><img src="" id="quick-view-image"></div>
+    <div class="quick-view-column">
+        <div class="quick-view-padding">
+            <span id="quick-view-vendor"></span><br>
+            <span id="quick-view-sku"></span><br><br>
+            <span id="quick-view-title"></span><br>
+            <div class="quick-view-hr"></div>
+            <span id="quick-view-price"></span><br><br>
+            <span id="quick-view-bodyhtml"></span><br>
+            <div class="quick-view-hr"></div>
+
+            <div class="quantity-box-1" onClick="quantityMinus()">-</div><div class="quantity-box-2" id="quantity-box-2">1</div><div class="quantity-box-1" onClick="quantityPlus()">+</div>
+            <div class="add-to-cart" id="add-to-cart" onClick="addToCart();">Add to Cart</div>
+            <input type="hidden" id="variant_id" name="variant_id" value="">
+
+            <div class="cart-success" id="cart-success">Your shopping cart has been updated. <a href="/cart" class="view-cart-link">View Cart</a></div>
+
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+
+</div>
+</body>
+</html>

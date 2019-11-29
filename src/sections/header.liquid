@@ -1,0 +1,121 @@
+<div class="top-bar" id="top-bar"><center>{{ 'left_arrow.svg' | asset_url | img_tag: 'Left Arrow', 'left-arrow' }}Free Shipping on Orders over $100{{ 'right_arrow.svg' | asset_url | img_tag: 'Right Arrow', 'right-arrow' }}<img src="{{ 'close.svg' | asset_url }}" class="close" onClick="closeTop();"></center></div>
+
+<div class="header">
+
+        <div class="column left">
+                {{ 'logo.svg' | asset_url | img_tag: 'Logo', 'logo' }}
+        </div>
+        <div class="column middle">
+            <center>
+                <div class="drop-down-spot" onMouseOver="dropDownOver();" onMouseOut="dropDownOut()">
+                    <a href="#" class="header-link" >Category {{ 'down-arrow.svg' | asset_url | img_tag: 'Down Arrow', 'down-arrow' }}</a>
+                    </div>
+                    <a href="#" class="header-link">Category</a>
+                    <a href="#" class="header-link">Category</a>
+                    <a href="#" class="header-link">Category</a>
+                    <a href="#" class="header-link">About</a>
+                    <a href="#" class="header-link">Blog</a>
+                    </center>
+        </div>
+        <div class="column right">
+            <div class="left-bar"></div>
+            <a href="#" class="login-link"><b>LOGIN</b></a>
+            <div class="right-bar"></div>
+            {{ 'search.svg' | asset_url | img_tag: 'Search', 'header-icon' }}
+            {{ 'favorite.svg' | asset_url | img_tag: 'Favorite', 'header-icon' }}
+            <a href="/cart"><img src="{{ 'cart.svg' | asset_url }}" class="header-icon"></a>
+            </div>
+    
+
+</div>
+
+<div id="page-container">
+   <div id="content-wrap">
+
+<div class="mobile-header">
+        {{ 'logo.svg' | asset_url | img_tag: 'Logo', 'logo' }}
+        <img src="{{ 'menu.svg' | asset_url }}" class="header-icon" id="mobile-button" onClick="mobileMenuOpen();">
+        <a href="/cart"><img src="{{ 'cart.svg' | asset_url }}" class="header-icon" id="mobile-cart"></a>
+</div>
+
+
+<div class="mobile-drop-down" id="mobile-drop-down">
+    <div class="mobile-drop-down-shadow"></div>
+    
+        <a href="#" class="header-link-mobile">Category {{ 'add.png' | asset_url | img_tag: 'expand', 'mobile-expand' }}</a>
+        <div class="mobile-divider"></div>
+        <a href="#" class="header-link-mobile">Category {{ 'add.png' | asset_url | img_tag: 'expand', 'mobile-expand' }}</a>
+        <div class="mobile-divider"></div>
+        <a href="#" class="header-link-mobile">Category</a>
+        <div class="mobile-divider"></div>
+        <a href="#" class="header-link-mobile">Category</a>
+        <div class="mobile-divider"></div>
+        <a href="#" class="header-link-mobile">About</a>
+        <div class="mobile-divider"></div>
+        <a href="#" class="header-link-mobile">Blog</a>
+</div>
+
+</div>
+
+<div class="mobile-blue-footer" id="mobile-blue-footer">
+            <center><img src="{{ 'utilitynav.svg' | asset_url }}" style="padding-top:50px;"></center>
+</div>   
+</div>
+
+
+
+<div class="mega-drop-down-container" onMouseOver="dropDownOver();" onMouseOut="dropDownOut()">
+<div class="mega-drop-down" id="mega-drop-down">
+    <table>
+        <tr><td style="padding-right:80px;">
+            <span class="label">Label</span>
+            <div class="gray-bar"></div>
+            <div class="spacing-bar"></div>
+            <span class="subcat">Subcategory Name<br></span>
+                <span class="subcat">Subcategory Name<br></span>
+                    <span class="subcat">Subcategory Name<br></span>
+                        <span class="subcat">Subcategory Name</span>
+        </td>
+        <td style="padding-right:80px;">
+            <span class="label">Label</span>
+            <div class="gray-bar"></div>
+            <div class="spacing-bar"></div>
+            <span class="subcat">Subcategory Name<br></span>
+                <span class="subcat">Subcategory Name<br></span>
+                    <span class="subcat">Subcategory Name<br></span>
+                        <span class="subcat">Subcategory Name</span>
+        </td>
+        <td>
+            <span class="label">Label</span>
+            <div class="gray-bar"></div>
+            <div class="spacing-bar"></div>
+            <span class="subcat">Subcategory Name<br></span>
+                <span class="subcat">Subcategory Name<br></span>
+                    <span class="subcat">Subcategory Name<br></span>
+                        <span class="subcat">Subcategory Name</span>
+        </td>
+        <td style="padding-right:80px;">
+            <div class="spacing-bar" style="height:30px;"></div>
+            <span class="subcat">Subcategory Name<br></span>
+                <span class="subcat">Subcategory Name<br></span>
+                    <span class="subcat">Subcategory Name<br></span>
+                        <span class="subcat">Subcategory Name</span>
+        </td>
+        <td style="padding-right:40px;">
+            <span class="label">Label</span>
+            <div class="gray-bar"></div>
+            <div class="spacing-bar"></div>
+            <span class="subcat">Subcategory Name<br></span>
+                <span class="subcat">Subcategory Name<br></span>
+                    <span class="subcat">Subcategory Name<br></span>
+                        <span class="subcat">Subcategory Name</span>
+        </td>
+        <td class="shop-mens">
+                <div class="shop-mens-div">
+                    <div class="shop-mens-button">Shop Men's</div>
+                 </div>
+        </td>
+    </tr>
+    </table>
+</div>
+</div>
